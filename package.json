@@ -1,0 +1,28 @@
+{
+  "name": "node_practice",
+  "version": "1.0.0",
+  "description": "node practice",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jellyfishgh/nodePractice.git"
+  },
+  "keywords": [
+    "node",
+    "js"
+  ],
+  "author": "jellyfishgh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jellyfishgh/nodePractice/issues"
+  },
+  "homepage": "https://github.com/jellyfishgh/nodePractice#readme",
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "request": "^2.72.0"
+  }
+}
