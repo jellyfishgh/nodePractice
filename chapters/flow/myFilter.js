@@ -17,7 +17,7 @@ function myFilter(collection, filter, map, cb) {
                     countdown++;
                     function mapDone(err, result) {
                         if (err) return done(err);
-                        results[i] = result;
+                        results.push(result);
                         if (--countdown === 0) {
                             done(null, results);
                         }

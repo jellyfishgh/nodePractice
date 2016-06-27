@@ -1,12 +1,13 @@
 const async = require('async');
 const fs = require('fs');
-const filePaths = require('./filePaths');
+const filePaths = require('./filePaths')[process.argv[2] ? process.argv[2] : 'some'];
 
-async.every(filePaths, (element, next) => {
-    fs.exists(element, (exists) => {
-        console.log(`${element} ${exists}`);
-        next(exists);
+async.filter(filePaths, (element, next) => {
+    fs.access(element, (err) => {
+        next(null, !err);
     });
-}, (result) => {
-    console.log(`${result}`);
+}, (err, results) => {
+    results.map((result) => {
+        console.log(`${result}`);
+    });
 });

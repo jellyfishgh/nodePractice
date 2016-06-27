@@ -14,7 +14,7 @@ function doWhatWasAsked(cb) {
             return;
         }
         aFd = fd;
-        fs.read(aFd, buffer, 0, 10, 10, openB);
+        fs.read(aFd, buffer, 0, buffer.length, 0, openB);
     }
 
     function openB(err) {
@@ -22,7 +22,7 @@ function doWhatWasAsked(cb) {
             cb(err);
             return;
         }
-        fs.open(path.join(__dirname, 'b.txt'), statB);
+        fs.open(path.join(__dirname, 'b.txt'), 'a', statB);
     }
 
     function statB(err, fd) {
@@ -39,7 +39,7 @@ function doWhatWasAsked(cb) {
             cb(err);
             return;
         }
-        fs.write(bFd, buffer, 0, 10, bStats.size, cb);
+        fs.write(bFd, buffer, 0, buffer.length, bStats.size, cb);
     }
     openA();
 }

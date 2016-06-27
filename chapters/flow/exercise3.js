@@ -3,7 +3,7 @@ const path = require('path');
 const Step = require('step');
 
 function doWhatWasAsked(cb) {
-    var aFd, bFd, buffer = new Buffer(10);
+    var aFd, bFd, buffer = new Buffer(3);
     Step(
         function openA() {
             fs.open(path.join(__dirname, 'a.txt'), 'r', this);
@@ -14,14 +14,14 @@ function doWhatWasAsked(cb) {
                 return;
             }
             aFd = fd;
-            fs.read(aFd, buffer, 0, 10, 10, this);
+            fs.read(aFd, buffer, 0, buffer.length, 26, this);
         },
         function openB(err) {
             if (err) {
                 cb(err);
                 return;
             }
-            fs.open(path.join(__dirname, 'b.txt'), this);
+            fs.open(path.join(__dirname, 'b.txt'), 'a', this);
         },
         function statB(err, fd) {
             if (err) {
@@ -36,7 +36,7 @@ function doWhatWasAsked(cb) {
                 cb(err);
                 return;
             }
-            fs.write(bFd, buffer, 0, 10, bStats.size, cb);
+            fs.write(bFd, buffer, 0, buffer.length, bStats.size, cb);
         });
 }
 

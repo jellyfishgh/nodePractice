@@ -4,7 +4,7 @@ const request = require('request');
 var funcs = [];
 
 for (var i = 0; i < 10; i++) {
-    funcs.push((i) => {
+    funcs.push(function (i) {
         return function (done) {
             request({
                 "uri": "http://localhost:4001",
@@ -13,10 +13,10 @@ for (var i = 0; i < 10; i++) {
                 done(err, body);
             });
         };
-    });
+    } (i));
 }
 
 async.parallel(funcs, (err, result) => {
-    if(err) throw err;
+    if (err) throw err;
     console.log(`${result}`);
 });

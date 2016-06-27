@@ -23,3 +23,4 @@ http.createServer((req, res) => {
         res.end(total.toString());
     });
 }).listen(port);
+console.log(`server listening on ${port}`);

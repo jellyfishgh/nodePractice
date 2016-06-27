@@ -3,7 +3,7 @@ const request = require('request');
 
 var funcs = [];
 
-for(var i = 0; i < i; i++) {
+for(var i = 0; i < 5; i++) {
     funcs.push(function(i){
         return function(done) {
             request({
@@ -13,7 +13,7 @@ for(var i = 0; i < i; i++) {
                 done(err, body);
             })
         }
-    });
+    }(i));
 }
 
 async.series(funcs, (err, result) => {

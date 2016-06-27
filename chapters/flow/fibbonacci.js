@@ -22,7 +22,7 @@ function iterator(memo, item, next) {
     });
 }
 
-async.reduce(items, memo, interator, (err, result) => {
+async.reduce(items, memo, iterator, (err, result) => {
     if (err) throw err;
-    console.log(`${order}, ${result[1]}`);
+    console.log(`Fibbonacci[${order}] = ${result[1]}`);
 });

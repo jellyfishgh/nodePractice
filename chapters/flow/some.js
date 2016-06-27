@@ -1,11 +1,11 @@
 const async = require('async');
 const fs = require('fs');
+const filePaths = require('./filePaths')[process.argv[2] ? process.argv[2] : 'some'];
 
-async.some([
-    'does_not_exist.js',
-    'also_does_not_exist.js',
-    'also_does_not_exist_2.js',
-    'filter.js'
-], fs.exists, (result) => {
-    console.log();
+async.some(filePaths, (filePath, cb) => {
+    fs.access(filePath, (err) => {
+        cb(null, !err);
+    })
+}, (err, result) => {
+    console.log(result);
 });
